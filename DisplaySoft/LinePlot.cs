@@ -75,12 +75,14 @@ namespace DisplaySoft
         public LinePlot()
         {
             CH = new Chart();
+            
             // Declaring Chart Area.
             ChartArea ca = new ChartArea();
 
             // Adding Chart Area to Chart.
             CH.ChartAreas.Add(ca);
 
+            // Setting Anchor  of Chart.
             CH.Anchor = ((AnchorStyles)
                 ((AnchorStyles.Top | AnchorStyles.Bottom)));
 
@@ -94,19 +96,21 @@ namespace DisplaySoft
 
             CH.Location = new Point(PosX, PosY);
             CH.Size = new Size(Width, Height);
-            CH.BackColor = BgColor;
 
-
-            // Chart.Titles.Add(title);
-            Title title = CH.Titles.Add(Title);
+            /*Title title = CH.Titles.Add(Title);
             title.Font = new Font("Arial", 16, FontStyle.Bold);
-            title.ForeColor = TextColor;
+            title.ForeColor = TextColor;*/
 
+
+            #region Chart Area:
+
+            CH.ChartAreas[0].BackColor = BgColor;
+            
             // Border of ChartArea
             CH.ChartAreas[0].BorderDashStyle = ChartDashStyle.Solid;
             CH.ChartAreas[0].BorderWidth = 2;
-            CH.ChartAreas[0].BorderColor = Color.White;
-            CH.ChartAreas[0].BackColor = BgColor;
+            #endregion
+
 
             #region Axises:
 
