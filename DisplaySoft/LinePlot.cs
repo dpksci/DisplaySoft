@@ -8,17 +8,18 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 namespace DisplaySoft
 {
+
     internal class LinePlot
     {
         #region Private Fields:
         private float startX, startY, endX, endY, stepsX, stepsY;
         private string unitX, unitY, axisLabelX, axisLabelY, title;
-        private int noOfGraphs,posX, posY, height, width;
+        private int noOfGraphs, posX, posY, height, width;
         private Color textColor, gridColor, lineColor, bgColor;
         private DockStyle dock;
+        private AnchorStyles anchor;
 
         #endregion
-
 
         #region Properties:
         public float StartX
@@ -67,7 +68,8 @@ namespace DisplaySoft
         { get { return bgColor; } set { bgColor = value; } }
         public DockStyle Dock
         { get { return dock; } set { dock = value; } }
-
+        public AnchorStyles Anchor
+        { get { return anchor; } set { anchor = value; } }
         #endregion
 
         public Chart CH;
@@ -75,7 +77,7 @@ namespace DisplaySoft
         public LinePlot()
         {
             CH = new Chart();
-            
+
             // Declaring Chart Area.
             ChartArea ca = new ChartArea();
 
@@ -83,10 +85,8 @@ namespace DisplaySoft
             CH.ChartAreas.Add(ca);
 
             // Setting Anchor  of Chart.
-            CH.Anchor = ((AnchorStyles)
-                ((AnchorStyles.Top | AnchorStyles.Bottom)));
+            CH.Anchor = ((AnchorStyles)((AnchorStyles.Top | AnchorStyles.Left)));
 
-            CH.BackColor = Color.Transparent;
 
         }
 
@@ -97,23 +97,24 @@ namespace DisplaySoft
             CH.Location = new Point(PosX, PosY);
             CH.Size = new Size(Width, Height);
 
-            /*Title title = CH.Titles.Add(Title);
+            CH.BackColor = BgColor;
+            CH.Dock = Dock;
+
+            Title title = CH.Titles.Add(Title);
             title.Font = new Font("Arial", 16, FontStyle.Bold);
-            title.ForeColor = TextColor;*/
+            title.ForeColor = TextColor;
 
 
             #region Chart Area:
-
             CH.ChartAreas[0].BackColor = BgColor;
-            
+
             // Border of ChartArea
             CH.ChartAreas[0].BorderDashStyle = ChartDashStyle.Solid;
             CH.ChartAreas[0].BorderWidth = 2;
+            CH.ChartAreas[0].BorderColor = Color.White;
             #endregion
 
-
             #region Axises:
-
             //Ranges
             CH.ChartAreas[0].AxisX.Minimum = StartX;
             CH.ChartAreas[0].AxisX.Interval = StepsX;
@@ -129,7 +130,7 @@ namespace DisplaySoft
             CH.ChartAreas[0].AxisY.Title = AxisLabelY;
             CH.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 10, FontStyle.Bold);
             CH.ChartAreas[0].AxisY.TitleForeColor = TextColor;
-                
+
             //Lables
             CH.ChartAreas[0].AxisX.LabelStyle.Format = "0.00";
             CH.ChartAreas[0].AxisY.LabelStyle.Format = "0.00";
@@ -173,6 +174,40 @@ namespace DisplaySoft
             #endregion
 
 
+
+            #region Putting Data:
+            #region Adding Series:
+            for (int i = 0; i < noOfGraphs; i++)
+            {
+                string sName = "series" + (i + 1).ToString();
+                Series series = new Series(sName);
+
+                series.ChartArea = "ChartArea1";
+                series.ChartType = SeriesChartType.Line;
+                series.Legend = "Legend1";
+                series.Name = sName;
+
+                series.Color = lineColor;
+                CH.Series.Add(series);
+            }
+            #endregion
+
+            double d;
+            #region Plotting Series:
+            for (float i = 0; i <= 360; i++)
+            {
+                float k = 1;
+                for (int j = 1; j <= noOfGraphs; j++)
+                {
+                    string sName = "series" + (j).ToString();
+                    d = i * (Math.PI / 180);
+                    CH.Series[sName].Points.AddXY(i, Math.Sin(d) + k);
+
+                    k += stepsY;
+                }
+            }
+            #endregion
+            #endregion
         }
 
 

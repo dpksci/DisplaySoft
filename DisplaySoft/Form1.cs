@@ -14,77 +14,94 @@ namespace DisplaySoft
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); 
 
             #region Line Plot1:
             //Chart
-            LinePlot p1 = new LinePlot();
-            p1.PosX = 10;
-            p1.PosY = 10;
+            LinePlot c1 = new LinePlot();
+            c1.PosX = 0;
+            c1.PosY = 0;
 
-            p1.Height = 500;
-            p1.Width = 300;
-            p1.Title = "TimeSeriesPlot\nI-Data (S10-W10)";
+            c1.Width = 550;
+            c1.Height = 500;
+            c1.Dock = DockStyle.Left;
+
+            c1.Title = "TimeSeriesPlot\nI-Data (S10-W10)";
 
             //Axis
-            p1.StartX = 0;
-            p1.StartY = 0;
-            p1.EndX = 360;
-            p1.EndY = 50;
-            p1.StepsX = 10;
-            p1.StepsY = 2;
+            c1.StartX = 0;
+            c1.StartY = 0;
+            c1.EndX = 360;
+            c1.EndY = 50;
+            c1.StepsX = 10;
+            c1.StepsY = 2;
 
-            p1.UnitX = "ms";
-            p1.UnitY = "Kms";
-            p1.AxisLabelX = "Time";
-            p1.AxisLabelY = "Range";
+            c1.UnitX = "ms";
+            c1.UnitY = "Kms";
+            c1.AxisLabelX = "Time";
+            c1.AxisLabelY = "Range";
 
-            p1.NoOfGraphs = 20;
-            p1.GridColor = Color.Gray;
-            p1.TextColor = Color.White;
-            p1.LineColor = Color.ForestGreen;
-            p1.BgColor = Color.IndianRed;
+            c1.NoOfGraphs = 20;
+            c1.GridColor = Color.Gray;
+            c1.TextColor = Color.White;
+            c1.LineColor = Color.Green;
+            c1.BgColor = Color.Black;
 
-            //p1.Dock = DockStyle.Left;
-            p1.InitializeChart();
+            c1.Dock = DockStyle.Left;
+            c1.InitializeChart();
             #endregion
 
             #region Line Plot2:
             //Chart
-            LinePlot p2 = new LinePlot();
-            p2.PosX = 310;
-            p2.PosY = 10;
+            LinePlot c2 = new LinePlot();
+            c2.PosX = 0;
+            c2.PosY = 0;
 
-            p2.Height = 500;
-            p2.Width = 300;
-            p2.Title = "TimeSeriesPlot\nI-Data (S10-W10)";
+            c2.Width = 550;
+            c2.Height = 500;
+            c2.Dock = DockStyle.Left;
+
+            c2.Title = "TimeSeriesPlot\nI-Data (S10-W10)";
 
             //Axis
-            p2.StartX = 0;
-            p2.StartY = 0;
-            p2.EndX = 360;
-            p2.EndY = 50;
-            p2.StepsX = 10;
-            p2.StepsY = 2;
+            c2.StartX = 0;
+            c2.StartY = 0;
+            c2.EndX = 360;
+            c2.EndY = 50;
+            c2.StepsX = 10;
+            c2.StepsY = 2;
 
-            p2.UnitX = "ms";
-            p2.UnitY = "Kms";
-            p2.AxisLabelX = "Time";
-            p2.AxisLabelY = "Range";
+            c2.UnitX = "ms";
+            c2.UnitY = "Kms";
+            c2.AxisLabelX = "Time";
+            c2.AxisLabelY = "Range";
 
-            p2.NoOfGraphs = 20;
-            p2.GridColor = Color.Gray;
-            p2.TextColor = Color.White;
-            p2.LineColor = Color.ForestGreen;
+            c2.NoOfGraphs = 20;
+            c2.GridColor = Color.Gray;
+            c2.TextColor = Color.White;
+            c2.LineColor = Color.Green;
+            c2.BgColor = Color.Black;
 
-            //p2.Dock = DockStyle.Right;
-            p2.BgColor = Color.IndianRed;
-            p2.InitializeChart(); 
-
+            c2.Dock = DockStyle.Left;
+            c2.InitializeChart();
             #endregion
 
-            Controls.Add(p1.CH);
-            Controls.Add(p2.CH);
+
+            RadarDataReader c3 = new RadarDataReader();
+            c3.BgColor = Color.Aquamarine;
+            c3.Dock = DockStyle.Fill;
+
+            c3.PosX = 1100;
+            c3.PosY = 0;
+
+            c3.Width = 400;
+            c3.Height = 500;
+            c3.Initialize();
+
+            Controls.Add(c3.textBox);
+            Controls.Add(c3.CH);
+            Controls.Add(c1.CH);
+            Controls.Add(c2.CH);
         }
     }
 }
