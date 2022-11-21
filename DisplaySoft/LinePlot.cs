@@ -124,11 +124,11 @@ namespace DisplaySoft
 
             //Title
             CH.ChartAreas[0].AxisX.Title = AxisLabelX;
-            CH.ChartAreas[0].AxisX.TitleFont = new Font("Arial", 10, FontStyle.Bold);
+            CH.ChartAreas[0].AxisX.TitleFont = new Font("Arial", 15, FontStyle.Bold);
             CH.ChartAreas[0].AxisX.TitleForeColor = TextColor;
 
             CH.ChartAreas[0].AxisY.Title = AxisLabelY;
-            CH.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 10, FontStyle.Bold);
+            CH.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 15, FontStyle.Bold);
             CH.ChartAreas[0].AxisY.TitleForeColor = TextColor;
 
             //Lables

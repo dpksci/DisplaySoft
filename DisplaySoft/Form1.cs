@@ -33,7 +33,7 @@ namespace DisplaySoft
             c1.StartY = 0;
             c1.EndX = 360;
             c1.EndY = 50;
-            c1.StepsX = 10;
+            c1.StepsX = 100;
             c1.StepsY = 2;
 
             c1.UnitX = "ms";
@@ -68,13 +68,13 @@ namespace DisplaySoft
             c2.StartY = 0;
             c2.EndX = 360;
             c2.EndY = 50;
-            c2.StepsX = 10;
+            c2.StepsX = 50;
             c2.StepsY = 2;
 
             c2.UnitX = "ms";
             c2.UnitY = "Kms";
-            c2.AxisLabelX = "Time";
-            c2.AxisLabelY = "Range";
+            c2.AxisLabelX = "Time2";
+            c2.AxisLabelY = "Range2";
 
             c2.NoOfGraphs = 20;
             c2.GridColor = Color.Gray;
@@ -88,20 +88,25 @@ namespace DisplaySoft
 
 
             RadarDataReader c3 = new RadarDataReader();
-            c3.BgColor = Color.Aquamarine;
-            c3.Dock = DockStyle.Fill;
+            c3.BgColor = Color.Black;
+
+            //c3.Dock = DockStyle.Fill;
 
             c3.PosX = 1100;
             c3.PosY = 0;
 
             c3.Width = 400;
-            c3.Height = 500;
+            c3.Height = 800;
+            c3.Title = "Radar Data Header";
+            c3.TextColor = Color.White;
             c3.Initialize();
 
+            // Sequence is Important while Adding Charts to Form:
             Controls.Add(c3.textBox);
             Controls.Add(c3.CH);
-            Controls.Add(c1.CH);
             Controls.Add(c2.CH);
+            Controls.Add(c1.CH);
+            
         }
     }
 }
