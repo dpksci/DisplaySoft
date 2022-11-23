@@ -47,7 +47,7 @@ namespace DisplaySoft
             c1.LineColor = Color.Green;
             c1.BgColor = Color.Black;
 
-            c1.Dock = DockStyle.Left;
+            //c1.Dock = DockStyle.Left;
             c1.InitializeChart();
             #endregion
 
@@ -82,31 +82,39 @@ namespace DisplaySoft
             c2.LineColor = Color.Green;
             c2.BgColor = Color.Black;
 
-            c2.Dock = DockStyle.Left;
+            //c2.Dock = DockStyle.Left;
             c2.InitializeChart();
             #endregion
 
 
-            RadarDataReader c3 = new RadarDataReader();
-            c3.BgColor = Color.Black;
-
-            //c3.Dock = DockStyle.Fill;
-
-            c3.PosX = 1100;
-            c3.PosY = 0;
-
-            c3.Width = 400;
-            c3.Height = 800;
-            c3.Title = "Radar Data Header";
-            c3.TextColor = Color.White;
-            c3.Initialize();
-
-            // Sequence is Important while Adding Charts to Form:
-            Controls.Add(c3.textBox);
-            Controls.Add(c3.CH);
             Controls.Add(c2.CH);
             Controls.Add(c1.CH);
             
         }
+
+        private void OnPaint(object sender, PaintEventArgs e)
+        {
+            DataReader r = new DataReader();
+            r.PosX = 1110;
+            r.PosY = 111;
+            r.Width = 350;
+            r.Height = 670;
+            r.SetGraphic = this.CreateGraphics();
+
+            r.PenColor = Color.White;
+            r.PenSize = 3;
+
+            r.Title = "Radar Data\n    Reader";
+            r.TextColor = Color.White;
+            r.SetTitleFont("Arial", 14, FontStyle.Bold);
+            r.SetTextFont("Arial", 12, FontStyle.Regular);
+            r.RenderText(e);
+            r.Initialise();
+
+            
+        }
+
+        
+
     }
 }

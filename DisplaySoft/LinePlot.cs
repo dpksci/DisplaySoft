@@ -74,6 +74,7 @@ namespace DisplaySoft
 
         public Chart CH;
 
+
         public LinePlot()
         {
             CH = new Chart();
@@ -89,7 +90,7 @@ namespace DisplaySoft
 
 
         }
-
+   
         public void InitializeChart()
         {
             // Setting Position Of Chart.
@@ -98,7 +99,7 @@ namespace DisplaySoft
             CH.Size = new Size(Width, Height);
 
             CH.BackColor = BgColor;
-            CH.Dock = Dock;
+            CH.Dock = DockStyle.Left;
 
             Title title = CH.Titles.Add(Title);
             title.Font = new Font("Arial", 16, FontStyle.Bold);
@@ -110,28 +111,29 @@ namespace DisplaySoft
 
             // Border of ChartArea
             CH.ChartAreas[0].BorderDashStyle = ChartDashStyle.Solid;
-            CH.ChartAreas[0].BorderWidth = 2;
+            CH.ChartAreas[0].BorderWidth = 3;
             CH.ChartAreas[0].BorderColor = Color.White;
+
             #endregion
 
             #region Axises:
-            //Ranges
+            // Axis Ranges
             CH.ChartAreas[0].AxisX.Minimum = StartX;
             CH.ChartAreas[0].AxisX.Interval = StepsX;
 
             CH.ChartAreas[0].AxisY.Minimum = StartY;
             CH.ChartAreas[0].AxisY.Interval = StepsY;
 
-            //Title
+            // Axis Title
             CH.ChartAreas[0].AxisX.Title = AxisLabelX;
-            CH.ChartAreas[0].AxisX.TitleFont = new Font("Arial", 15, FontStyle.Bold);
+            CH.ChartAreas[0].AxisX.TitleFont = new Font("Arial", 13, FontStyle.Bold);
             CH.ChartAreas[0].AxisX.TitleForeColor = TextColor;
 
             CH.ChartAreas[0].AxisY.Title = AxisLabelY;
-            CH.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 15, FontStyle.Bold);
+            CH.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 13, FontStyle.Bold);
             CH.ChartAreas[0].AxisY.TitleForeColor = TextColor;
 
-            //Lables
+            //Axis Lables
             CH.ChartAreas[0].AxisX.LabelStyle.Format = "0.00";
             CH.ChartAreas[0].AxisY.LabelStyle.Format = "0.00";
 
@@ -141,7 +143,8 @@ namespace DisplaySoft
             //Base Line
             CH.ChartAreas[0].AxisX.LineWidth = 2;
             CH.ChartAreas[0].AxisX.LineColor = Color.White;
-
+            CH.ChartAreas[0].AxisY.LineWidth = 3;
+            CH.ChartAreas[0].AxisY.LineColor = Color.White;
 
             #endregion
 
@@ -161,16 +164,24 @@ namespace DisplaySoft
             CH.ChartAreas[0].AxisY.MajorTickMark.LineColor = Color.White;
             CH.ChartAreas[0].AxisY.MajorTickMark.IntervalOffset = StepsY / 2;
             CH.ChartAreas[0].AxisY.MajorTickMark.TickMarkStyle = TickMarkStyle.InsideArea;
+
+            CH.ChartAreas[0].AxisX.MajorTickMark.Interval = StepsX;
+            CH.ChartAreas[0].AxisX.MajorTickMark.Size = 1;
+            CH.ChartAreas[0].AxisX.MajorTickMark.LineColor = Color.White;
+            CH.ChartAreas[0].AxisX.MajorTickMark.IntervalOffset = StepsY;
+            CH.ChartAreas[0].AxisX.MajorTickMark.TickMarkStyle = TickMarkStyle.InsideArea;
             #endregion
 
             #region Zooming:
             CH.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             CH.ChartAreas[0].CursorX.AutoScroll = true;
             CH.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
-
+            CH.ChartAreas[0].AxisX.ScrollBar.BackColor = Color.White;
+            
             CH.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
             CH.ChartAreas[0].CursorY.AutoScroll = true;
             CH.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+            CH.ChartAreas[0].AxisY.ScrollBar.BackColor = Color.White;
             #endregion
 
 
