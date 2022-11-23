@@ -86,7 +86,6 @@ namespace DisplaySoft
             c2.InitializeChart();
             #endregion
 
-
             Controls.Add(c2.CH);
             Controls.Add(c1.CH);
             
@@ -95,19 +94,21 @@ namespace DisplaySoft
         private void OnPaint(object sender, PaintEventArgs e)
         {
             DataReader r = new DataReader();
-            r.PosX = 1110;
-            r.PosY = 111;
+            
+            r.Position(1110, 111);
             r.Width = 350;
             r.Height = 670;
-            r.SetGraphic = this.CreateGraphics();
 
-            r.PenColor = Color.White;
-            r.PenSize = 3;
+            r.SetGraphic = this.CreateGraphics();
 
             r.Title = "Radar Data\n    Reader";
             r.TextColor = Color.White;
             r.SetTitleFont("Arial", 14, FontStyle.Bold);
+
             r.SetTextFont("Arial", 12, FontStyle.Regular);
+            r.SetPen(Color.White, 3);
+            r.XmlPath = "D:\\RKS\\testXML.xml";
+
             r.RenderText(e);
             r.Initialise();
 
