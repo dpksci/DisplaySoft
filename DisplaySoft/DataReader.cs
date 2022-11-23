@@ -75,13 +75,14 @@ namespace DisplaySoft
             int nL = 0;   
             foreach (var item in Elements)
             {
-               
-                /*int fontSize = int.Parse((item.Elements("FontSize").ToString()));
-                Font myFont = new Font(font, fontSize, FontStyle.Regular);*/
-                TextRenderer.DrawText(e.Graphics, item.Value, textFont,
+                string font = item.Element("FontStyle").Value;
+                int fontSize = int.Parse((item.Element("FontSize").Value));
+                Font myFont = new Font(font, fontSize, FontStyle.Regular);
+                
+                TextRenderer.DrawText(e.Graphics, item.Element("text").Value, myFont,
                 new Rectangle(PosX + 10, PosY + 10 + nL, Width - 20, Height - 10), 
                 SystemColors.ControlLightLight, flags);
-                nL += 150;
+                nL += fontSize + 15;
             }
 
         }
